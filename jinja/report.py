@@ -21,4 +21,8 @@ data
 for col in data.columns:
     fig = data.plot.bar(y=col).get_figure().savefig('figs/' + col + '.png')
 
-
+from jinja2 import Template
+str = open('templates/index.html', 'r').read()
+template = Template(str)
+str = template.render(regions=data.columns.tolist())
+open('index.html', 'w').write(str);
